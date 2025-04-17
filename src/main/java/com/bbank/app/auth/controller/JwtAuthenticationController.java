@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @Slf4j
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 public class JwtAuthenticationController {
 
 	@Autowired
