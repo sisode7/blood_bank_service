@@ -11,7 +11,16 @@ import java.util.List;
 public class StorageService {
     @Autowired
     private StorageRepository storageRepository;
+
     public List<Storage> getAllUnits(){
         return storageRepository.getStorages();
+    }
+
+    public Storage getStorageByBloodGroup(String bloodGroup) {
+        return storageRepository.getByBloodGroup(bloodGroup);
+    }
+
+    public void updateStorage(Storage storage) {
+        storageRepository.save(storage);
     }
 }
