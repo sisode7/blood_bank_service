@@ -22,9 +22,15 @@ public class BloodBankConsumerController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<String> saveConsumer(@RequestBody BloodBankConsumer bloodBankConsumer) {
-        bloodBankConsumerService.saveOrUpdateConsumer(bloodBankConsumer);
-        return new ResponseEntity<>("SUCCESS",HttpStatus.OK);
+    public ResponseEntity<BloodBankConsumer> saveConsumer(@RequestBody BloodBankConsumer bloodBankConsumer) {
+        BloodBankConsumer consumer = bloodBankConsumerService.saveOrUpdateConsumer(bloodBankConsumer);
+        return new ResponseEntity<>(consumer,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Boolean> deleteConsumer(@PathVariable Long id) {
+        boolean deleted = bloodBankConsumerService.deleteConsumer(id);
+        return new ResponseEntity<>(deleted,HttpStatus.OK);
     }
 
 }

@@ -10,7 +10,7 @@ public class BloodBankConsumer {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long loginUserId;
+    private Long id;
 
     @Column(name = "name")
     private String name;
