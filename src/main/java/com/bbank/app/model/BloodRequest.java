@@ -1,9 +1,6 @@
 package com.bbank.app.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
@@ -12,10 +9,14 @@ import lombok.Data;
 public class BloodRequest {
     @Id
     @Column(name = "request_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long requestId;
 
     @Column(name = "consumer_id")
     private Long consumerId;
+
+    @Column(name = "consumer_name")
+    private String consumerName;
 
     @Column(name = "blood_group")
     private String bloodGroup;

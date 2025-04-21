@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/request")
+@RequestMapping("/bloodRequest")
 public class BloodRequestController {
 
     @Autowired
@@ -30,8 +30,15 @@ public class BloodRequestController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<String> saveBloodRequest(@RequestBody BloodRequest bloodRequest) throws Exception {
-        bloodRequestService.saveOrUpdateDonation(bloodRequest);
-        return new ResponseEntity<>("SUCCESS",HttpStatus.OK);
+    public ResponseEntity<BloodRequest> saveBloodRequest(@RequestBody BloodRequest bloodRequest) throws Exception {
+        BloodRequest request = bloodRequestService.saveOrUpdateDonation(bloodRequest);
+        return new ResponseEntity<>(request,HttpStatus.OK);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Boolean> deleteRequest(@PathVariable Long id) {
+        boolean deleted = bloodRequestService.deleteRequest(id);
+        return new ResponseEntity<>(deleted,HttpStatus.OK);
+    }
+
 }

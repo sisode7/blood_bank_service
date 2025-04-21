@@ -5,6 +5,7 @@ import com.bbank.app.model.Storage;
 import com.bbank.app.repository.BloodRequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class BloodRequestService {
         return bloodRequestRepository.getAllByRequestType(requestType);
     }
 
+    @Transactional
     public BloodRequest saveOrUpdateDonation(BloodRequest bloodRequest) throws Exception {
         if(bloodRequest.getUnits()>0) {
             Integer finalUnits = 0;
@@ -46,5 +48,12 @@ public class BloodRequestService {
         }else{
             return storage.getUnits()+request.getUnits();
         }
+    }
+
+    @Transactional
+    public Boolean deleteRequest(Long requestId) {
+        BloodRequest request = bloodRequestRepository.getReferenceById(requestId);
+        bloodRequestRepository.delete(request);
+        return true;
     }
 }
